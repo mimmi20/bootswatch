@@ -31,7 +31,13 @@ const SWATCHES = [
   'united',
   'vapor',
   'yeti',
-  'zephyr'
+  'zephyr',
+  'clevertom',
+  'easymize',
+  'empathy',
+  'finumpriv',
+  'default',
+  'mv24',
 ];
 
 const BUILD_DIR = 'build/';
@@ -187,7 +193,7 @@ module.exports = grunt => {
         tasks: ['build', 'shell:csslint']
       }
     },
-    shell: {  
+    shell: {
       options: {
         stderr: false,
         failOnError: false

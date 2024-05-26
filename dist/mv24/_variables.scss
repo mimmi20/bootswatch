@@ -1,0 +1,158 @@
+@use "../../build/scss/functions";
+@use "../../node_modules/bootstrap/scss/functions" as bsFunctions;
+
+/* Functions */
+
+@function rgba-blend($fore, $back: #ffffff) {
+    $ored: ((1 - alpha($fore)) * red($back) ) + (alpha($fore) * red($fore));
+    $ogreen: ((1 - alpha($fore)) * green($back) ) + (alpha($fore) * green($fore));
+    $oblue: ((1 - alpha($fore)) * blue($back) ) + (alpha($fore) * blue($fore));
+    @return rgb($ored, $ogreen, $oblue);
+}
+
+/* fonts */
+
+$font-family-sans-serif: "Nunito Sans", sans-serif !default;
+$font-family-base:       $font-family-sans-serif !default;
+$font-weight-light:      300 !default;
+$font-weight-regular:    400 !default;
+$font-weight-bold:       700 !default;
+
+/* grid */
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 667px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+) !default;
+
+$container-max-widths: (
+    sm: 667px,
+    md: 768px,
+    lg: 992px,
+    xl: 1240px
+) !default;
+
+/* colors */
+
+$white:  #fff !default;
+$gray-1: #e0e0e0 !default;
+$gray-2: #d1d1d1 !default;
+$gray-3: #c2c2c2 !default;
+$gray-4: #b3b3b3 !default;
+$gray-5: #a4a4a4 !default;
+$gray-6: #959595 !default;
+$gray-7: #868686 !default;
+$gray-8: #777777 !default;
+$gray-9: #686868 !default;
+$black:  #000 !default;
+
+$blue:   #0099cc !default;
+$purple: #613d7c !default;
+$pink:   #ff5b77 !default;
+$red:    #ff2000 !default;
+$orange: #fe9808 !default;
+$yellow: #ffd500 !default;
+$green:  #8dc63f !default;
+$teal:   #20c997 !default;
+
+$highlighted: #2dc1d6 !default;
+$branding:    $blue !default;
+
+$primary:   $blue !default;
+$secondary: $gray-6 !default;
+$success:   $green !default;
+$info:      rgba-blend(rgba($blue, .7)) !default;
+$warning:   $orange !default;
+$danger:    $red !default;
+
+$font-default:            $black !default;
+$font-label:              $black !default;
+$body-bg:                 $white !default;
+$body-color:              $black !default;
+$link-color:              $blue !default;
+$link-hover-color:        bsFunctions.shade-color($blue, 20%) !default;
+$btn-link-disabled-color: bsFunctions.tint-color($blue, 30%) !default;
+$btn-hover:               #189acd !default;
+$base-border-color:       $gray-1 !default;
+$form-border-color:       $gray-3 !default;
+$default-bg:              $gray-1 !default;
+
+/* variables in elements */
+
+$result-container: (
+    color:    $gray-7,
+    bg:       $white,
+    hr-color: $gray-2
+);
+
+$result-headline: (
+    font-size:   functions.to-rem(14px),
+    font-weight: 600
+);
+
+$capacity-container: (
+    font-size:          functions.to-rem(18px),
+    color:              $secondary,
+    current-rate-color: $secondary,
+    best-rate-color:    $blue
+);
+
+$progress-chart: (
+    bg:                      $gray-1,
+    transition:              width 1s ease-out 1s,
+    current-rate-bg:         $secondary,
+    current-rate-color:      $secondary,
+    current-rate-less-bg:    $secondary,
+    current-rate-less-color: $secondary,
+    best-rate-bg:            $blue,
+    best-rate-color:         $blue,
+    font-size:               functions.to-rem(14px)
+);
+
+$addition: (
+    bg: $gray-1
+);
+
+$circle-chart: (
+    stroke-width:             1.5,
+    secondary-stroke:         $secondary,
+    secondary-stroke-linecap: round,
+    secondary-bg-stroke:      $gray-2,
+    primary-stroke:           $blue,
+    primary-stroke-linecap:   round,
+    primary-bg-stroke:        $gray-2,
+    animation:                progress 1s ease-out forwards
+);
+
+$percentage: (
+    font-size:       functions.to-rem(36px),
+    text-align:      center,
+    span-font-size:  functions.to-rem(20px),
+    secondary-color: $gray-4,
+    primary-color:   $blue
+);
+
+$accordion: (
+    bg:                  functions.str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' style='fill: #{$black}' width='1024' height='1024' viewBox='0 0 1024 1024'%3E%3Cpath d='M0 285l512 411.33 512-411v42l-512 411.67-512-411.66z'%3E%3C/path%3E%3C/svg%3E"), "#", "%23") no-repeat center / contain,
+    transition:          transform ease .2s,
+    max-height-transion: max-height ease .4s,
+    trigger-font-size:   functions.to-rem(14px),
+    header-font-size:    functions.to-rem(14px),
+    header-color:        $gray-7
+);
+
+$layer: (
+    type-icon-bg:              functions.str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' width='1024' height='1024' viewBox='0 0 1024 1024'%3E%3Cpath d='M447.822 449.536h128v319.488h-128v-319.488zM447.822 257.706h128v128h-128v-128zM511.993 0c-282.767 0.004-511.993 229.233-511.993 512 0 282.77 229.23 512 512 512s512-229.23 512-512c0-0.96-0.003-1.92-0.008-2.879-1.549-281.445-230.182-509.121-511.992-509.121-0.003 0-0.005 0-0.008 0zM511.993 943.445c-241.297 0-436.907-195.61-436.907-436.907s195.61-436.907 436.907-436.907c241.297 0 436.907 195.61 436.907 436.907s-195.61 436.907-436.907 436.907z' fill='#{$gray-2}' %3E%3C/path%3E%3C/svg%3E"), "#", "%23") no-repeat center / contain,
+    type-text-color:           $blue,
+    type-text-text-decoration: underline,
+    layer-bg:                  rgba($black, .4),
+    content-font-size:         functions.to-rem(14px),
+    close-transition-color:    $blue,
+    close-transition-level:    5%,
+    headline-primary-color:    $blue,
+    headline-secondary-color:  $secondary,
+    list-color:                $secondary,
+);
