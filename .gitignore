@@ -6,6 +6,7 @@ _site
 *.lock
 .sass-cache/
 /dist/*/build.scss
+vendor
 
 # Local Netlify folder
 .netlify

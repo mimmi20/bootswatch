@@ -1,0 +1,61 @@
+// Global Functions
+
+// Replace `$search` with `$replace` in `$string`
+// @author Hugo Giraudel
+// @param {String} $string - Initial string
+// @param {String} $search - Substring to replace
+// @param {String} $replace ('') - New value
+// @return {String} - Updated string
+@function str-replace($string, $search, $replace: "") {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+// Function for converting a px based font-size to rem.
+@function to-rem($size) {
+    $remValue: calc($size / 16);
+    $newRemValue: str-replace(#{$remValue}, 'px', 'rem');
+    @return $newRemValue;
+}
+
+// Retrieve Result Config Sass maps
+@function get-result-container-config($key: color) {
+    @return map-get($result-container, $key);
+};
+
+@function get-result-headline-config($key: font-size) {
+    @return map-get($result-headline, $key);
+};
+
+@function get-capacity-container-config($key: font-size) {
+    @return map-get($capacity-container, $key);
+};
+
+@function get-progress-chart-config($key: bg) {
+    @return map-get($progress-chart, $key);
+};
+
+@function get-addition-config($key: bg) {
+    @return map-get($addition, $key);
+};
+
+@function get-circle-chart-config($key: stroke-width) {
+    @return map-get($circle-chart, $key);
+};
+
+@function get-percentage-config($key: font-size) {
+    @return map-get($percentage, $key);
+};
+
+@function get-accordion-config($key: bg) {
+    @return map-get($accordion, $key);
+};
+
+@function get-layer-config($key: type-icon-bg) {
+    @return map-get($layer, $key);
+};
